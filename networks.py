@@ -1,7 +1,8 @@
 from ops import *
 from CONFIG import *
 
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 class Generator:
     def __init__(self, name):
