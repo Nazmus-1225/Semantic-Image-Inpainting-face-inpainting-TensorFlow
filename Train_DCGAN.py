@@ -21,7 +21,7 @@ class DCGAN:
         self.sess.run(tf.global_variables_initializer())
 
     def train(self):
-        file_path = "./celeba//"
+        file_path = "/kaggle/input/celeba-dataset/img_align_celeba/img_align_celeba/"
         file_names = os.listdir(file_path)
         saver = tf.train.Saver()
         batch = np.zeros([BATCHSIZE, IMG_H, IMG_W, IMG_C])
