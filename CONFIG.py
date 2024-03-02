@@ -1,3 +1,5 @@
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 BATCHSIZE = 128
 IMG_H = 64
 IMG_W = 64
