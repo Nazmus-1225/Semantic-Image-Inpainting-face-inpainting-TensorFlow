@@ -36,7 +36,7 @@ class Discriminator:
             inputs = leaky_relu(InstanceNorm(conv("conv4", inputs, 512, 5, 2, is_SN=True), "IN4"))
             print(inputs.shape)
             print(inputs.dtype)
-            inputs = tf.layers.flatten(inputs)
+            inputs = tf.keras.layers.Flatten()(inputs)
             return fully_connected("liner", inputs, 1)
 
     @property
