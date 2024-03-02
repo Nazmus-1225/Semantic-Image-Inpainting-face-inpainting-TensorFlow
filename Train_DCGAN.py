@@ -3,7 +3,8 @@ from PIL import Image
 import numpy as np
 import scipy.misc as misc
 import os
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 class DCGAN:
     def __init__(self):
         self.img = tf.placeholder(tf.float32, [None, IMG_H, IMG_W, IMG_C])
