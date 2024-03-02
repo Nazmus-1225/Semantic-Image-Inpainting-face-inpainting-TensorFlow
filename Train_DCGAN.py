@@ -2,6 +2,7 @@ from networks import *
 from PIL import Image
 import numpy as np
 import scipy.misc as misc
+from skimage import transform
 import os
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
@@ -33,7 +34,7 @@ class DCGAN:
                     img = np.array(Image.open(file_path + file_names[filename]))
                     h = img.shape[0]
                     w = img.shape[1]
-                    batch[j, :, :, :] = misc.imresize(img[(h // 2 - 70):(h // 2 + 70), (w // 2 - 70):(w // 2 + 70), :], [64, 64]) / 127.5 - 1.0
+                    batch[j, :, :, :] = transform.resize(img[(h // 2 - 70):(h // 2 + 70), (w // 2 - 70):(w // 2 + 70), :], [64, 64]) / 127.5 - 1.0
                 z = np.random.standard_normal([BATCHSIZE, Z_DIM])
                 self.sess.run(self.Opt_D, feed_dict={self.img: batch, self.z: z})
             z = np.random.standard_normal([BATCHSIZE, Z_DIM])
