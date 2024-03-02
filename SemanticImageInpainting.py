@@ -3,7 +3,8 @@ from utils import *
 from Train_DCGAN import DCGAN
 from PIL import Image
 import scipy.misc as misc
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 class SemanticImageInpainting:
     def __init__(self):
         self.img = tf.placeholder(tf.float32, [1, IMG_H, IMG_W, IMG_C])
