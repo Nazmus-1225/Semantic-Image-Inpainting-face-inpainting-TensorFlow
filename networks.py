@@ -28,8 +28,11 @@ class Discriminator:
     def __call__(self, inputs):
         with tf.variable_scope(self.name, reuse=tf.AUTO_REUSE):
             inputs = leaky_relu(conv("conv1", inputs, 64, 5, 2, is_SN=True))
+            print(inputs.shape)
             inputs = leaky_relu(InstanceNorm(conv("conv2", inputs, 128, 5, 2, is_SN=True), "IN2"))
+            print(inputs.shape)
             inputs = leaky_relu(InstanceNorm(conv("conv3", inputs, 256, 5, 2, is_SN=True), "IN3"))
+            print(inputs.shape)
             inputs = leaky_relu(InstanceNorm(conv("conv4", inputs, 512, 5, 2, is_SN=True), "IN4"))
             print(inputs.shape)
             inputs = tf.keras.layers.Flatten()(inputs)
