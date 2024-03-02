@@ -42,7 +42,7 @@ class DCGAN:
             if i % 10 == 0:
                 [D_loss, G_loss, fake_img] = self.sess.run([self.D_loss, self.G_loss, self.fake_img], feed_dict={self.img: batch, self.z: z})
                 print("Step: %d, D_loss: %f, G_loss: %f"%(i, D_loss, G_loss))
-                Image.fromarray(np.uint8((fake_img[0, :, :, :] + 1.0) * 127.5)).save("./result/"+str(i)+".jpg")
+                Image.fromarray(np.uint8((fake_img[0, :, :, :] + 1.0) * 127.5)).save("/kaggle/working/Semantic-Image-Inpainting-face-inpainting-TensorFlow/result/"+str(i)+".jpg")
             if i % 100 == 0:
                 saver.save(self.sess, "./save_para//dcgan.ckpt")
 
