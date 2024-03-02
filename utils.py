@@ -1,5 +1,6 @@
 import numpy as np
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def get_mask(mask_W, mask_H, img_H, img_W):
     Y = np.random.randint(0, mask_W + 1)
