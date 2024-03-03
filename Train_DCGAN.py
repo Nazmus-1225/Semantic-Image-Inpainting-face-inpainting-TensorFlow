@@ -25,12 +25,13 @@ class DCGAN:
 
     def train(self):
         file_path = "/kaggle/input/celeba-dataset/img_align_celeba/img_align_celeba/"
-        file_names = os.listdir(file_path)
+        file_names1 = os.listdir(file_path)
+        file_names = file_names1[0:32000]
         print(len(file_names))
         saver = tf.train.Saver()
         batch = np.zeros([BATCHSIZE, IMG_H, IMG_W, IMG_C])
         dataset_size = len(file_names)
-        num_epochs=50
+        num_epochs=30
         num_steps = (dataset_size + BATCHSIZE - 1) // BATCHSIZE  # Calculate number of steps based on dataset size and batch size
 
         for epoch in range(num_epochs):
