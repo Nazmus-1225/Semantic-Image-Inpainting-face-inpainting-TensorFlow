@@ -31,9 +31,9 @@ class DCGAN:
         for i in range(8000):
             for c in range(1):
                 batch_filenames = np.random.random_integers(0, file_names.__len__()-1, BATCHSIZE)
-                print(batch_filenames[15])
+                
                 for j, filename in enumerate(batch_filenames):
-                    img = np.array(Image.open(file_path + file_names[filename]))
+                    img = np.array(Image.open(file_path + file_names[filename]+".jpg"))
                     h = img.shape[0]
                     w = img.shape[1]
                     batch[j, :, :, :] = transform.resize(img[(h // 2 - 70):(h // 2 + 70), (w // 2 - 70):(w // 2 + 70), :], [64, 64]) / 127.5 - 1.0
@@ -42,6 +42,8 @@ class DCGAN:
             z = np.random.standard_normal([BATCHSIZE, Z_DIM])
             self.sess.run(self.Opt_G, feed_dict={self.z: z})
             if i % 10 == 0:
+                print(batch.shape)
+                print(z.shape)
                 [D_loss, G_loss, fake_img] = self.sess.run([self.D_loss, self.G_loss, self.fake_img], feed_dict={self.img: batch, self.z: z})
                 print("Step: %d, D_loss: %f, G_loss: %f"%(i, D_loss, G_loss))
                 Image.fromarray(np.uint8((fake_img[0, :, :, :] + 1.0) * 127.5)).save("/kaggle/working/Semantic-Image-Inpainting-face-inpainting-TensorFlow/result/"+str(i)+".jpg")
