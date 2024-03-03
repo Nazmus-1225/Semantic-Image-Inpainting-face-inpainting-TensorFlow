@@ -58,7 +58,7 @@ class DCGAN:
                 
                 if epoch % 10 == 0:
                     saver.save(self.sess, "/kaggle/working/Semantic-Image-Inpainting-face-inpainting-TensorFlow/save_para/dcgan_epoch_%d.ckpt" % epoch)
-pu_devices = tf.config.experimental.list_physical_devices('GPU')
+gpu_devices = tf.config.experimental.list_physical_devices('GPU')
 for device in gpu_devices:
         tf.config.experimental.set_memory_growth(device, True)
 if __name__ == "__main__":
