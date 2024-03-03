@@ -25,11 +25,13 @@ class DCGAN:
     def train(self):
         file_path = "/kaggle/input/celeba-dataset/img_align_celeba/img_align_celeba/"
         file_names = os.listdir(file_path)
+        print(len(file_names))
         saver = tf.train.Saver()
         batch = np.zeros([BATCHSIZE, IMG_H, IMG_W, IMG_C])
         for i in range(8000):
             for c in range(1):
                 batch_filenames = np.random.random_integers(0, file_names.__len__()-1, BATCHSIZE)
+                print(len(batch_filenames))
                 for j, filename in enumerate(batch_filenames):
                     img = np.array(Image.open(file_path + file_names[filename]))
                     h = img.shape[0]
