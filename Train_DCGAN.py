@@ -31,7 +31,7 @@ class DCGAN:
         for i in range(8000):
             for c in range(1):
                 batch_filenames = np.random.random_integers(0, file_names.__len__()-1, BATCHSIZE)
-                print(len(batch_filenames))
+                print(batch_filenames[15])
                 for j, filename in enumerate(batch_filenames):
                     img = np.array(Image.open(file_path + file_names[filename]))
                     h = img.shape[0]
