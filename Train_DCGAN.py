@@ -51,13 +51,13 @@ class DCGAN:
                 z = np.random.standard_normal([BATCHSIZE, Z_DIM])
                 self.sess.run(self.Opt_G, feed_dict={self.z: z})
                 
-                if epoch % 10 == 0:
+                if step % 20 == 0:
                     [D_loss, G_loss, fake_img] = self.sess.run([self.D_loss, self.G_loss, self.fake_img], feed_dict={self.img: batch, self.z: z})
                     print("Epoch: %d, Step: %d, D_loss: %f, G_loss: %f"%(epoch, step, D_loss, G_loss))
                     Image.fromarray(np.uint8((fake_img[0, :, :, :] + 1.0) * 127.5)).save("/kaggle/working/Semantic-Image-Inpainting-face-inpainting-TensorFlow/result/epoch_%d.jpg" % (epoch))
                 
-                if epoch % 10 == 0:
-                    saver.save(self.sess, "/kaggle/working/Semantic-Image-Inpainting-face-inpainting-TensorFlow/save_para/dcgan_epoch_%d.ckpt" % epoch)
+            if epoch % 5 == 0:
+                saver.save(self.sess, "/kaggle/working/Semantic-Image-Inpainting-face-inpainting-TensorFlow/save_para/dcgan_epoch_%d.ckpt" % epoch)
 gpu_devices = tf.config.experimental.list_physical_devices('GPU')
 for device in gpu_devices:
         tf.config.experimental.set_memory_growth(device, True)
