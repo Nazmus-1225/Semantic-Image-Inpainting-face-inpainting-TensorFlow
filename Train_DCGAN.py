@@ -4,6 +4,7 @@ import numpy as np
 import scipy.misc as misc
 from skimage import transform
 import os
+import sys
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 class DCGAN:
