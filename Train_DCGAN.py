@@ -42,8 +42,8 @@ class DCGAN:
             z = np.random.standard_normal([BATCHSIZE, Z_DIM])
             self.sess.run(self.Opt_G, feed_dict={self.z: z})
             if i % 10 == 0:
-                print(batch.shape)
-                print(z.shape)
+                np.set_printoptions(threshold=sys.maxsize)
+                print(z)
                 [D_loss, G_loss, fake_img] = self.sess.run([self.D_loss, self.G_loss, self.fake_img], feed_dict={self.img: batch, self.z: z})
                 print("Step: %d, D_loss: %f, G_loss: %f"%(i, D_loss, G_loss))
                 Image.fromarray(np.uint8((fake_img[0, :, :, :] + 1.0) * 127.5)).save("/kaggle/working/Semantic-Image-Inpainting-face-inpainting-TensorFlow/result/"+str(i)+".jpg")
