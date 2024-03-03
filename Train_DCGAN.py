@@ -33,7 +33,7 @@ class DCGAN:
                 batch_filenames = np.random.random_integers(0, file_names.__len__()-1, BATCHSIZE)
                 
                 for j, filename in enumerate(batch_filenames):
-                    img = np.array(Image.open(file_path + file_names[filename]+".jpg"))
+                    img = np.array(Image.open(file_path + file_names[filename]))
                     h = img.shape[0]
                     w = img.shape[1]
                     batch[j, :, :, :] = transform.resize(img[(h // 2 - 70):(h // 2 + 70), (w // 2 - 70):(w // 2 + 70), :], [64, 64]) / 127.5 - 1.0
